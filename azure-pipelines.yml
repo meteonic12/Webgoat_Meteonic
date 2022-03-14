@@ -11,15 +11,28 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: kiuwan-baseline-analysis-task@2
+  - 
+- task: Maven@3
   inputs:
-    kiuwanConnection: 'Kiuwan'
-    projectnameselector: 'kiuwanapp'
-    kiuwanappname: 'Webgoat.NET'
-    includeinsight: true
-    uploadsnippets: true
-    uploadfiles: false
-    skipclones: false
-    overridedotkiuwan: false
-    overrideappmodel: false
-    dbanalysis: false
+    mavenPomFile: 'pom.xml'
+    options: 'clean install'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
+
+post-build:
+
+- script: |
+    curl -LJO https://unified-agent.s3.amazonaws.com/wss-unified-agent.jar
+    echo Unified Agent downloaded successfully
+    java -jar wss-unified-agent.jar
+  env:
+    WS_APIKEY: 250865dd939049cabc5c954806c92f5f03ba0bb0398b4739980edc84374af819
+    WS_WSS_URL: https://saas.whitesourcesoftware.com/Wss/WSS.html/
+    WS_PRODUCTNAME: WebGoat_Azure_1
+    WS_PROJECTNAME: WebGoat_Azure
+  displayName: 'WhiteSource Unified Agent Scan'
