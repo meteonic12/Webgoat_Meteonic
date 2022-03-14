@@ -35,4 +35,9 @@ post-build:
     WS_WSS_URL: https://saas.whitesourcesoftware.com/Wss/WSS.html/
     WS_PRODUCTNAME: WebGoat_Azure_1
     WS_PROJECTNAME: WebGoat_Azure
+    resolveAllDependencies: true
+    maven.resolveDependencies: true
+    maven.downloadMissingDependencies: true
+    
+
   displayName: 'WhiteSource Unified Agent Scan'
