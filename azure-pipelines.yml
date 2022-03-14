@@ -24,7 +24,7 @@ steps:
     WS_PROJECTNAME: WebGoat_Azure
     resolveAllDependencies: true
     maven.resolveDependencies: true
-    maven.downloadMissingDependencies: true
+    
     
 
   displayName: 'WhiteSource Unified Agent Scan'
