@@ -12,18 +12,17 @@ pool:
 
 steps:
 
-- script: |
-
-    curl -LJO https://unified-agent.s3.amazonaws.com/wss-unified-agent.jar
-    echo Unified Agent downloaded successfully
-    java -jar wss-unified-agent.jar
-  env:
-    WS_APIKEY: 250865dd939049cabc5c954806c92f5f03ba0bb0398b4739980edc84374af819
-    WS_WSS_URL: https://saas.whitesourcesoftware.com/Wss/WSS.html/agent/
-    WS_PRODUCTNAME: WebGoat_Azure_1
-    WS_PROJECTNAME: WebGoat_Azure
-    resolveAllDependencies: true
-    maven.resolveDependencies: true
+- task: WhiteSource@20
+  inputs:
+    cwd: '$(Build.SourcesDirectory)'
+    extensions: '.dll'
+    checkPolicies: 'SEND_ALERTS'
+    productName: 'WhiteSource_Azure1'
+    projectRule: 'projectName'
+    projectName: 'WhiteSource_Azure'
+    forceCheckAllDependencies: true
+    failOnError: false
+    WhiteSourceService: 'WhiteSource'
     
     
 
