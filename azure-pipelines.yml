@@ -21,6 +21,8 @@ steps:
     projectRule: 'projectName'
     projectName: 'WhiteSource_Azure'
     forceCheckAllDependencies: true
+    maven.resolveDependencies: true
+    resolveAllDependencies: true
     failOnError: false
     WhiteSourceService: 'WhiteSource'
     
