@@ -12,7 +12,7 @@ pool:
 
 steps:
 
-- task: WhiteSource@20
+- task: WhiteSource
   inputs:
     cwd: '$(Build.SourcesDirectory)'
     extensions: '.dll'
