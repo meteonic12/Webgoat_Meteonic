@@ -11,22 +11,8 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-
-- task: WhiteSource
+- task: WhiteSource@21
   inputs:
-    cwd: '$(Build.SourcesDirectory)'
-    extensions: '.dll'
-    checkPolicies: 'SEND_ALERTS'
-    scanReportTimeout: '100'
-    productName: 'Azure'
-    projectRule: 'projectName'
+    cwd: '$(System.DefaultWorkingDirectory)'
     projectName: 'WhiteSource_Azure'
-    forceCheckAllDependencies: true
-    maven.resolveDependencies: true
-    resolveAllDependencies: true
-    failOnError: false
-    WhiteSourceService: 'WhiteSource'
-    
-    
-
-  displayName: 'WhiteSource Unified Agent Scan'
+    scanReportTimeout: '1000'
