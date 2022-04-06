@@ -27,7 +27,7 @@ steps:
     cwd: '$(Build.SourcesDirectory)'
     extensions: '.dll'
     checkPolicies: 'SEND_ALERTS'
-    productName: 'WhiteSource_Azure1'
+    productName: 'Azure'
     projectRule: 'projectName'
     projectName: 'WhiteSource_Azure'
     forceCheckAllDependencies: true
