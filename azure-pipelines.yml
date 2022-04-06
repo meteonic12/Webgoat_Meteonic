@@ -11,22 +11,13 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'pom.xml'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    javaHomeOption: 'JDKVersion'
-    mavenVersionOption: 'Default'
-    mavenAuthenticateFeed: false
-    effectivePomSkip: false
-    sonarQubeRunAnalysis: false
 
 - task: WhiteSource@20
   inputs:
     cwd: '$(Build.SourcesDirectory)'
     extensions: '.dll'
     checkPolicies: 'SEND_ALERTS'
+    scanReportTimeout: '100'
     productName: 'Azure'
     projectRule: 'projectName'
     projectName: 'WhiteSource_Azure'
